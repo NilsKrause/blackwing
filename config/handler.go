@@ -1,16 +1,17 @@
 package config
 
 import (
-	"git.blp.de/BLP/loggy"
 	"github.com/spf13/viper"
 )
 
 var _internal *configuration = &configuration{}
 
+// gets called from Initialize to set the default values in the configuration
 func setDefaults() {
 	viper.SetDefault("prefix", "+")
 }
 
+// Initialize reads the config file and sets defaults
 func Initialize() {
 	setDefaults()
 
@@ -20,7 +21,6 @@ func Initialize() {
 	viper.AddConfigPath(".")
 
 	if err := viper.ReadInConfig(); err != nil {
-		loggy.Errorf("Could not read configuration (%s).", err.Error())
 		panic("Could not read configuration.")
 	}
 
@@ -31,10 +31,12 @@ func Initialize() {
 	}
 }
 
+// APIToken returns the, from the configuration set APIToken
 func APIToken() string {
 	return _internal.Apitoken
 }
 
+// Prefix sets the bot prefix
 func Prefix() string {
 	return _internal.Prefix
 }
