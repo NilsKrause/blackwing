@@ -1,0 +1,5 @@
+# your secret bot apitoken
+apitoken: "<my api token>"
+
+# bot prefix to call the bot in chat
+prefix: "<prefix>"
